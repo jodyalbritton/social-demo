@@ -1,0 +1,90 @@
+<% content_for :sidebar do %>
+<div id="profile-sidebar" class="profile-sidebar">
+   
+        <div class="well">
+        <div id="profile-name" class="row-fluid">
+        <div id="profile_pic" class="span3">
+	   
+	
+       </div>
+        <div class="span9 user-head-main">
+               <h4><%= @user.username %></h4>
+	        
+                <% if user_signed_in? %>
+                <div id="follows_user">
+                <%= render :partial => "follows/follow_user", :locals => {:user => @user} %>
+          
+                </div>
+                <% end %> 
+                </div>
+        </div>
+        </div>
+        <div class="points">
+    
+        </div>
+
+
+   
+        <div id="profile-about">
+         <h3> About Me </h3>
+
+        </div>
+        
+         <div id="profile-followers">
+          <h3> Followers </h3>
+	      <% @followers.each do |follower| %>
+	      <a href="/<%=follower.slug%>"  rel="popover" data-trigger="hover" data-content="Test" data-title="<%=follower.username %>"><%= image_tag follower.profile.avatar.url(:mini) %></a>
+	
+	      <% end %>
+         </div>
+      
+ 
+  </div>
+  <% end%>
+
+  
+  
+
+  
+ 
+  <div class="user-header">
+  	 <div id="profile-merit">
+        
+         <ul>
+        
+          <li>
+            
+              <strong> <%= @user.follow_count %> </strong>
+              Following
+            
+
+          </li>
+
+          
+
+          
+            <li>
+              <strong><%= @user.followers_count %></strong>
+              Followers
+            </li>
+          
+
+        
+
+      </ul>
+      
+     
+      </ul>
+     
+	
+     </div>
+  </div>
+  <div class="user-controls row-fluid">
+
+
+
+	
+
+</div>
+
+

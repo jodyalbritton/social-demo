@@ -1,0 +1,44 @@
+  <div id="post-form-small" class="controls" onclick = "javascript:hideDiv('post-form-small'); javascript:toggleDiv('post-form-cont');">
+  	<input type="text" placeholder="What's New ?" class="input-xlarge"> 
+  </div>
+  <div  id="post-form-cont" style="display:none;">
+  <%= simple_form_for @post , :remote => true, :validate => false do |f| %>
+
+   
+   <%= f.input :parent_id, :as => 'hidden', :input_html =>{:value => @parent}%>
+   <div class="post-form-box">
+   <%= f.input :content,  :label => false, :input_html => {:id=>"post-form-cont-form", :class=> "post-input"}%>
+   <a href="javascript:toggleDiv('post-date');"> Change Date</a>
+   <div id="post-date" style="display:none;">
+   <%= f.input :date, :label=> false, :input_html=>{:class=>"input-small"}%> 
+   </div>
+   <div>
+   <%= f.file_field :attachment %>
+   </div>
+  </div>
+     
+  
+  
+
+ <div class="modal-footer" id="form-action-main">
+ 	
+  
+       <% if @parent == '0' %>
+ 
+     	
+        <%= f.input :scope, :as => 'select', :collection => @scopes, :include_blank => false, :label => false %><%= f.submit "Post", :class => "btn btn-primary" %>
+        <a href="javascript:hideDiv('post-form-small'); javascript:hideDiv('post-form-cont');" class="btn">Cancel</a>
+         <% else %>
+
+
+        <%= f.submit "Post", :disable_with => "Please wait...", :class => "btn btn-primary" %><a href="javascript:hideDiv('post-form-small'); javascript:hideDiv('post-form-cont');" class="btn"> Cancel</a>
+      <% end %>
+ 
+        
+     
+   
+   </div>
+
+     
+ <% end %>
+ </div>

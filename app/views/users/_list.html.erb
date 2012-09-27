@@ -1,0 +1,41 @@
+
+	    
+        <% @users.each do |user| %>
+       
+ 
+    	<% unless user.profile == nil %>
+    	<div class="item-user row-fluid">
+  
+        <div class="span2 list-username">
+        <div class="user-list-avatar">
+        <%= link_to (image_tag user.profile.avatar.url(:thumb), :class => "avatar"), user%>
+        </div>
+        
+  
+        <div>
+         
+    	<%= link_to user.username,(user)%>
+        </div>
+        </div>
+        <div class="span2 user-item-main">
+        	<div><h4><%= user.level%></h4></div>
+            <div><h3>Level</h3></div>
+        </div>
+         <div class="span2 user-item-main">
+         	<div><h4><%= user.points %></h4></div>
+            <div><h3>Points</h3></div>
+        </div>
+         <div class="span2 user-item-main">
+         	<div><h4><%= user.follows.count %></h4></div>
+            <div><h3>Following</h3></div>
+        </div>
+         <div class="span2 user-item-main">
+         	<div><h4><%= user.followers.count %></h4></div>
+            <div><h3>Followers</h3></div>
+        </div>
+        </div>
+    	<% end %>
+    
+      
+    	<% end %>
+    

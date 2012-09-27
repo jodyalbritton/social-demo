@@ -1,0 +1,42 @@
+
+
+  <% for post in @user.posts %>
+<div class="row">
+      <div id="post-sidebar" class="span3">
+
+          <div id="post-avatar" class="span1">
+             <%= image_tag @user.profile.avatar.url(:thumb) %>
+          </div>
+          <div>
+             <h3><%=@user.username %></h3>
+             <%= time_ago_in_words(post.created_at) %> ago.
+         </div>
+  
+     </div>
+    <div id="post-body" class="span5">
+             <div class="post-content">
+              <%= post.text %>
+             </div>
+     
+              <div id="post-footer"> 
+              <%= link_to "Edit", edit_post_path(post), :remote => true %> <%= link_to "Destroy", post, :remote => true, :confirm => 'Are you sure?', :method => :delete %>
+              </div>
+
+
+
+
+           <div id="comments_list">
+          <ul id="comments_<%= post.id %>">
+          <%= render_comments post %>
+          </ul>
+          </div>
+
+         <div id="comment-form">
+          <%= render_comments_form post %>
+         </div>
+    </div>
+</div>
+<% end %>
+
+
+  

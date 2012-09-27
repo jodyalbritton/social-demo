@@ -1,0 +1,11 @@
+          <% post = Post.find(like_object)%>
+              <div id="activity_like_<%= post.id %>">
+         
+  
+             <%= post.like_count  %> Props    
+             <%- if current_user.likes? post -%><%= unlike_link_for post  %>
+             <%- else -%>
+             <%= like_link_for post  %>
+             <%- end -%>
+              <a href="javascript:toggleDiv('new_comment_<%= post.id %>');" class= "icon-comment">Comment</a>  
+              </div>

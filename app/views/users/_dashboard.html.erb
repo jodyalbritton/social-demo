@@ -1,0 +1,67 @@
+<div class="row-fluid dash-items">
+<div class="profile-header">
+    
+  	<ul class="thumbnails">
+	<li>
+
+		<div class="dash-item thumbnail">
+			<div class="dash-content">
+			Activites
+			<h2><%= @user.physical_activities.count %></h2>
+			Logged
+			</div>
+	    </div>
+
+	</li>
+	<li>
+
+		<div class="dash-item thumbnail">
+			
+			<div class="dash-content">
+			Meals
+			<h2><%= @user.meals.count %></h2>
+			Logged
+			</div>
+	    
+	    </div>
+
+	</li>
+	<li>
+	
+		<div class="dash-item thumbnail">
+			
+			<div class="dash-content">
+			Stats
+			<h2><%= @user.stats.count %></h2>
+			Logged
+			</div>
+	  
+	    </div>
+
+	</li>
+	<li>
+	
+		<div class="dash-item thumbnail">
+			<div class="dash-content">
+			Badges
+			<h2><%= @user.badges.count %></h2>
+			Earned
+			</div>
+	    </div>
+
+	</li>
+	</ul>
+	<ul class="thumbnails">
+	<% @user.badges.each do |badge| %>
+	   
+	    <li>
+		<div class="badge-item">
+			<div class="badge-content">
+			<%= badge.name %>
+			</div>
+	    </div>
+    </li>
+	<% end %>
+    </ul>
+</div>
+</div>

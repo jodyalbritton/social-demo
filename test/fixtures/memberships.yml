@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user: 
+  pending: false
+  group: 
+  blocked: false
+  glevel: 
+
+two:
+  user: 
+  pending: false
+  group: 
+  blocked: false
+  glevel: 

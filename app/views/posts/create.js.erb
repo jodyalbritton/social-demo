@@ -1,0 +1,27 @@
+<% if @post.errors.any? -%>
+  
+
+
+  /*Update the html of the div post_errors with the new one*/
+   $("#messages").html("<%= escape_javascript( render "posts/errors", :locals => { :post => @post }) %>");
+
+ 
+<% else -%>
+  
+
+   $("#post-form-cont").hide(0);
+   $("#post-form-small").show(0);
+  /*Clear the entire form*/
+  $("#post-form-cont-form.content").val("");
+   
+  /*Replace the html of the div post_lists with the updated new one*/
+  $("#messages").html("<%= escape_javascript( render "layouts/messages" ) %>");
+  $("#activity_feed").html("<%= escape_javascript( render "activities/index" ) %>");
+  
+  <% if @post.in_reply_to %>
+  $("#rt-modal").modal('toggle')
+  <% end %>
+  
+  
+
+<% end -%>

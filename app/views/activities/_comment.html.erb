@@ -1,0 +1,47 @@
+<% unless activity.target.nil? %>
+<div class="row activity-item">
+	 <div class="activity-controls pull-right">
+	   <i class="icon-cog"></i>
+
+      </div>
+      <div id="comment-sidebar" class="span2">
+
+          <div class="comment-avatar">
+           <%= image_tag activity.user.profile.avatar.url(:thumb), :class=> 'avatar' %>
+           <h3><%= activity.user.username %></h3>
+           <%= time_ago_in_words(activity.created_at) %> ago.
+         </div>
+  
+     </div>
+     <div id="comment-body" class="span6 comment-body">
+             <div class="comment-content">
+               <%= activity.target.body %>
+             </div>
+     
+           
+         
+              <div class="comment-likes">
+             <%= activity.target.like_count  %> Props    
+             <%- if current_user.likes? activity.target -%><%= unlike_link_for activity.target  %>
+             <%- else -%>
+             <%= like_link_for activity.target %>
+             <%- end -%>
+              
+             </div>
+           
+        
+           
+
+
+
+
+          
+    </div>
+</div>
+<% else %>
+
+<div class="content-removed">
+
+</div>
+
+<% end %>

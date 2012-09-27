@@ -1,0 +1,14 @@
+<% content_for :sidebar do %>
+	<%= render "groups/navigation" %>
+<% end %>
+<div id="users-list" class="users-list">
+	
+ 
+    <%= render "users/list" %>
+  
+</div>
+<div id="paginator" class="paginator" style="width:90%; margin-right: auto; margin-left:auto;">
+   <%= will_paginate @users %>
+</div>
+
+

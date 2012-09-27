@@ -1,0 +1,102 @@
+<% unless activity.target.nil? %>
+
+      <div class="row-fluid activity-item">
+	  
+      <div id="activity-sidebar" class="span2 activity-sidebar">
+
+     
+             <%= image_tag activity.user.profile.avatar.url(:thumb), :class => "avatar" %>
+             <h4><%= link_to activity.user.username, activity.user %></h4>
+             <i class="icon-time"></i> <%= time_ago_in_words(activity.created_at) %>
+   
+      
+  
+       </div>
+       <div id="post-body" class="span8 activity-body">
+             <div class="activity-content">
+             <p>
+              <%= link_to "Posted", activity.target %><%if activity.parent_id > 0%> to a group: <% end %>
+              <% if activity.target.reply_to_id  %> in reply to: <% end %>
+              <%= (mention_linker(activity.target.content)).html_safe %> <% if activity.target.attachment? %> -Photo Attached <% end%>
+             </p>
+             </div>
+     
+           
+         
+            
+             <%= render "activities/likes", :like_object => activity %>
+      
+        
+                   
+           
+        
+           
+
+
+
+     
+        
+          
+         <div id="expanded_<%= activity.id %>" class="expanded" Style="display:none;">
+         <div class="expanded-menu row-fluid">
+         	<div class="expanded-like-count span2">
+         		<div>
+         		<%= activity.target.likes.count %>
+         		</div>
+         		<div>Props</div>
+         	</div>
+         	<div class="span2">
+         	</div>
+         	
+         	<div class="span8">
+         		
+         		<% activity.target.likes.each do |likeuser| %>
+         		 <%= image_tag likeuser.user.profile.avatar.url(:mini), :class => "avatar" %>
+         		<% end %>
+         	</div>
+         </div>
+         <div class="attachment">
+         	<% if activity.target.attachment? %>
+         	 <%= image_tag activity.target.attachment.url(:medium), :class => "img-polaroid attachment" %>
+         	<% end %>
+         </div>
+         <div class="reply-list">
+         	<% activity.replies.each do |reply| %>
+         	  <div class="row-fluid">
+         	  	<div class="span1 reply-sidebar">
+         	  		<%= image_tag reply.user.profile.avatar.url(:mini), :class=> "avatar" %>
+         	  	</div>
+         	  	<div class="span8">
+         	  	<div class="reply-header">
+         	  	<div class="reply-time pull-right">
+         	  		<i class="icon-time"></i> <%= time_ago_in_words(reply.created_at) %>
+         	  	</div>
+         	  	<% self_posted = reply.user == current_user %>
+         	  	<%= self_posted ? "You" : link_to(reply.user.username) %> said:
+         	    
+         	  	</div>
+         	  	<div class="reply-body">
+         	  	<%= reply.content %>
+         	  	</div>
+         	  	</div>
+         	  </div>
+         	<% end %>
+         </div>
+         </div>  
+         
+    </div>
+     <div class="span2 activity-logo" >
+     	<div class="activity-logo visible-desktop">
+         <i class="icon-pencil"></i> 
+        </div>
+    </div>
+</div>
+<% else %>
+
+<div class="content-removed">
+ Content Removed
+</div>
+
+<% end %>
+
+

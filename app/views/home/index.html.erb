@@ -1,0 +1,55 @@
+<% content_for :sidebar do %>
+	<%= render "home/menu" %>
+<% end %>
+   <% content_for :top_left do%>
+   
+                
+       
+      
+             	 
+          
+ 
+   <% end %>
+   
+   <div id="posts_form">
+        	<% @parent = '0'%>
+        	<%= render :partial => 'posts/form' %>
+        </div>
+  
+        <div id="feed-body">
+        
+        <div id="activity_feed">
+          <%= render "activities/index" %>
+          
+        </div>
+      
+        <%= will_paginate @activities %>
+      
+
+ 
+      
+
+    </div>
+    
+    <div id="rt-modal" class="modal hide">
+    	<%= simple_form_for @post, :remote=> true, :html_options => {:class=> "form-horizontal"} do |f| %>
+    	<div class="modal-header">
+    		<button class="close" data-dismiss="modal">×</button>
+    		<h3>Reply</h3>
+    	</div>
+    	<div class="modal-body">
+    	     <div class="form-controls">
+    		<%= f.input :content, :label => false, :input_html => {:class=> "text_area"}%>
+    		<%= f.input :reply_to_id, :as => 'hidden' %>
+    		<%= f.input :parent_id, :as => 'hidden', :input_html =>{:value => @parent}%>
+    		</div>
+    	</div>
+    	<div class="modal-footer">
+    		<%= f.button :submit, "Reply"%>
+    	</div>
+    	<% end %>
+    </div>
+
+
+
+    

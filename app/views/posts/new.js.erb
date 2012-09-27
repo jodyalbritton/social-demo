@@ -1,0 +1,3 @@
+$("#post_reply_to_id").val("<%= @rtpost.id %>");
+$("#post_content").val("@<%= @rtpost.user.username %>");
+$("#rt-modal").modal('toggle')

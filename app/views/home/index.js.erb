@@ -1,0 +1,6 @@
+$('#activity_feed').append('<%= j render("activities/index") %>');
+<% if @activities.next_page %>
+  $('.pagination').replaceWith('<%= j will_paginate(@activities) %>');
+<% else %>
+  $('.pagination').remove();
+<% end %>
