@@ -1,8 +1,6 @@
 class HomeController < ApplicationController
-   before_filter :load
-    before_filter :authenticate_user!
-  def load
-  end
+   before_filter :authenticate_user!
+
    
     def index
      @user = User.find(current_user)
@@ -17,12 +15,6 @@ class HomeController < ApplicationController
  
      @curr_membs = @user.memberships.includes(:group)
      @post = current_user.posts.build
-     
-   
-     
-   
- 
+   end
   
-    
-  end
 end

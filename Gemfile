@@ -61,6 +61,10 @@ group :test do
   gem "database_cleaner", ">= 0.7.2", :group => :test
 end
 
+group :production do 
+gem 'thin'
+end
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
