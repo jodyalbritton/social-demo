@@ -46,10 +46,10 @@ gem 'will_paginate'
 gem 'best_in_place'
 gem 'remotipart'
 gem 'girl_friday'
+gem 'heroku'
 
 group :development do
 gem 'bullet'
-gem 'faker'
 gem 'faker'
 gem 'thin'
 end
