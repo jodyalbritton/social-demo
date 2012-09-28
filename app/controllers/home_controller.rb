@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
    before_filter :load
-
+    before_filter :authenticate_user!
   def load
   end
    
