@@ -1,0 +1,6 @@
+<% if @like_object.class.to_s == 'Comment'%>
+$("#comment_like_<%= @like_object.id %>").html("<%= escape_javascript(render "opinio/comments/likes", :like_object => @like_object) %>");
+
+<% else %>
+$("#activity_like_<%= @like_object.id %>").html("<%= escape_javascript(render "activities/likes", :like_object => @like_object) %>");
+<% end %>
