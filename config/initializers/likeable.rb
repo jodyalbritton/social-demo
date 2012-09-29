@@ -1,4 +1,4 @@
- Likeable.setup do |likeable|
-      likeable.redis   = Redis.new
+    Likeable.setup do |likeable|
+      likeable.redis = REDIS
     end
 
