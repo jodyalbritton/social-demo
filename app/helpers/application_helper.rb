@@ -20,6 +20,14 @@ module ApplicationHelper
        $1
      end 
     end
+    content.gsub(/\B#(\w*[A-Za-z0-9_]+\w*)/) do
+    linker = Tag.where(:content => $1)
+     if linker.any?
+      link_to $1, tag_path(linker.last.id)
+     else 
+       $1
+     end 
+    end
   end
   
 end

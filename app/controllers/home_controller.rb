@@ -3,6 +3,7 @@ class HomeController < ApplicationController
 
    
     def index
+     
      @user = User.find(current_user)
      @scopes = current_user.circles.map { |r| [r.name, r.id] }
      @scopes.push(["Public", "0"])
@@ -10,8 +11,16 @@ class HomeController < ApplicationController
      following_ids = following.collect{|f| f.followable_id}
      mycircles =  current_user.relationships.collect{|g| g.circle_id}
      mycircles.push(0)
-     aoi = Activity.where(:target_type => ["Post", "Stat", "PhysicalActivity", "Meal", "MentalActivity"], :scope => mycircles).includes(:target, :user, :target => :user)
-     @activities = aoi.where(:user_id => [following_ids, current_user] ).page(params[:page])
+     aoi = Activity.where(:target_type => ["Post"], :scope => mycircles).includes(:target, :user, :target => :user)
+       
+       if params[:tag]
+        @tag = Tag.find(params[:tag])
+        @activities = @tag.activities
+       else 
+        @activities = aoi.where(:user_id => [following_ids, current_user] ).page(params[:page])
+       end
+     
+     
  
      @curr_membs = @user.memberships.includes(:group)
      @post = current_user.posts.build

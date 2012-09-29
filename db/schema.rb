@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120929151622) do
+ActiveRecord::Schema.define(:version => 20120929163235) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
@@ -23,9 +23,18 @@ ActiveRecord::Schema.define(:version => 20120929151622) do
     t.integer  "scope"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
+    t.string   "tag_list"
   end
 
   add_index "activities", ["user_id"], :name => "index_activities_on_user_id"
+
+  create_table "activities_tags", :force => true do |t|
+    t.integer "activity_id"
+    t.integer "tag_id"
+  end
+
+  add_index "activities_tags", ["activity_id"], :name => "index_activities_tags_on_activity_id"
+  add_index "activities_tags", ["tag_id"], :name => "index_activities_tags_on_tag_id"
 
   create_table "circles", :force => true do |t|
     t.integer  "user_id"
@@ -134,6 +143,14 @@ ActiveRecord::Schema.define(:version => 20120929151622) do
 
   add_index "relationships", ["circle_id"], :name => "index_relationships_on_circle_id"
   add_index "relationships", ["user_id"], :name => "index_relationships_on_user_id"
+
+  create_table "tags", :force => true do |t|
+    t.string   "content"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "tags", ["content"], :name => "index_tags_on_content", :unique => true
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

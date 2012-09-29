@@ -14,7 +14,9 @@
         <div id="activity_feed">
           <%= render "activities/index" %>
         </div>
+          <% unless params.any? %>
           <%= will_paginate @activities %>
+          <% end %>
     </div>
     
     <div id="rt-modal" class="modal hide">

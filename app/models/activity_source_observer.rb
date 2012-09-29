@@ -13,6 +13,7 @@ class ActivitySourceObserver < ActiveRecord::Observer
       :user => target.user, 
       :target_id => target.id, 
       :activity_type=> target.class.to_s, 
+      :tag_list => target.tag_list, 
       :created_at => target.date, 
       :updated_at => target.updated_at,
       :parent_id => target.parent_id,

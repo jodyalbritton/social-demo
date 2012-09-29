@@ -1,9 +1,12 @@
 SocialDemo::Application.routes.draw do
  
 
-  devise_for :users
-  resources :users, :only => [:index]
-  get "home/index"
+   devise_for :users
+  
+  
+  
+    get "home/index"
+    get 'tags/:tag', to: 'home#index', as: :tag
     
     resources :posts
     resources :messages
@@ -13,6 +16,7 @@ SocialDemo::Application.routes.draw do
     resources :memberships 
     end
     
+    resources :users, :only => [:index]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
