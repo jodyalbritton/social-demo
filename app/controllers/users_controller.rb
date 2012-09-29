@@ -11,7 +11,14 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-     @followers = @user.followers
+    @post = @user.posts.find(:all)
+    @message = current_user.messages.build(params[:message])
+     mycircles =  current_user.relationships.collect{|g| g.circle_id}
+     mycircles.push(0)
+     @activities = @user.activities.where(:target_type => ["Post", "Stat", "Pactivity", "Meal"], :scope => mycircles )
+    
+    @post = Post.new
+    @followers = @user.followers
   end
 
 

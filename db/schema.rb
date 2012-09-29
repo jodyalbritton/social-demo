@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120929140300) do
+ActiveRecord::Schema.define(:version => 20120929151622) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
@@ -76,6 +76,14 @@ ActiveRecord::Schema.define(:version => 20120929140300) do
   add_index "memberships", ["glevel_id"], :name => "index_memberships_on_glevel_id"
   add_index "memberships", ["group_id"], :name => "index_memberships_on_group_id"
   add_index "memberships", ["user_id"], :name => "index_memberships_on_user_id"
+
+  create_table "messages", :force => true do |t|
+    t.string   "subject"
+    t.text     "body"
+    t.integer  "sender_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "posts", :force => true do |t|
     t.integer  "user_id"

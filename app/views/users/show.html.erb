@@ -4,7 +4,7 @@
         <div class="well">
         <div id="profile-name" class="row-fluid">
         <div id="profile_pic" class="span3">
-	   
+	    <%= image_tag @user.profile.avatar.url(:thumb), :class=> "user-pic" %>
 	
        </div>
         <div class="span9 user-head-main">
@@ -19,15 +19,11 @@
                 </div>
         </div>
         </div>
-        <div class="points">
-    
-        </div>
-
+  
 
    
         <div id="profile-about">
-         <h3> About Me </h3>
-
+         
         </div>
         
          <div id="profile-followers">
@@ -37,7 +33,16 @@
 	
 	      <% end %>
          </div>
-      
+       <div id="profile-memberships">
+   	   <h3> Groups </h3>
+   	      <ul>
+   	  	  <% @user.memberships.each do |membership| %>
+       	   <li>
+          <strong><%= link_to membership.group.name, membership.group%> </strong>
+          </li>
+          <% end %>
+          </ul>
+   </div>
  
   </div>
   <% end%>
@@ -70,7 +75,9 @@
           
 
         
-
+        <li>
+       
+        </li>
       </ul>
       
      
@@ -80,11 +87,31 @@
      </div>
   </div>
   <div class="user-controls row-fluid">
+  <ul class="nav nav-tabs">
+  <li class="active"><a href="#activity-feed" data-toggle="tab">Feed</a></li>
+  <li><a href="#dash" data-toggle="tab">Dashboard</a></li>
+  
+  </ul>
+  </div>
+  <div class="tab-content">
+ 
+  <div class="tab-pane active" id="activity-feed">
+  	
+  		<%= render :partial => "activities/index" %>
+ 
+  </div>
+   <div class="tab-pane" id="dash">
+        
+  </div>
 
+
+ 
 
 
 	
 
 </div>
-
+ <div class="modal hide fade" id="dm-modal">
+       <%= render "messages/form"%>
+  </div>
 

@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   validates_presence_of :username
   validates_uniqueness_of :username, :email, :case_sensitive => false
   validate :username_format
+  validates_confirmation_of :password
   
   
   
@@ -22,17 +23,20 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :name,:email, :password, :password_confirmation, :remember_me, :username, :profile_attributes, 
   :settings_attributes, :dgoal_attributes, :opt_in, :privacy, :notify_by_email
-  validates_confirmation_of :password
+
  
   after_create :initialize_profile
- #assoications
-  has_many :activities, dependent: :destroy
+  
+   #assoications
+   
+   has_many :activities, dependent: :destroy
    has_many :groups
    has_many :memberships, dependent: :destroy
    has_many :relationships, dependent: :destroy
    has_many :circles, :foreign_key => :author_id
+   has_many :messages, :foreign_key => :sender_id
    has_many :posts, dependent: :destroy
-  has_one :profile
+   has_one :profile
  
   def initialize_profile
       (self.profile = Profile.new).save
