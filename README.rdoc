@@ -3,4 +3,26 @@
 This is an example web app with social features. 
 
 
+##Requirements
+
+* Redis 
+* PGSQL
+* imagemagick
+
+You need basic working installs of the above items. 
+
+In the repo the app assumes a pg user named social. You can make this postgres to fit with the default install. 
+
+
+##Install
+
+Clone the repo
+
+bundle install
+
+rake db:create 
+rake db:migrate
+
+If you find bugs or need a feature submit an issue through github. 
+
 

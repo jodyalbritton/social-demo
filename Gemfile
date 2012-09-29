@@ -24,7 +24,6 @@ gem "launchy"
 gem "devise"
 gem "cancan"
 gem "rolify"
-gem "highcharts-rails", "~> 2.2.1"
 gem "carrierwave"
 gem "rmagick", :require => 'RMagick'
 gem "friendly_id", "~> 4.0.1"
@@ -35,11 +34,8 @@ gem 'omniauth-twitter'
 gem 'omniauth-openid'
 gem 'client_side_validations', :git => 'git://github.com/bcardarella/client_side_validations.git'
 gem 'acts_as_follower'
-gem 'chosen-rails'
 gem 'redis'
 gem 'likeable'
-gem 'jquery-ui-themes'
-gem 'ajax-chosen-rails'
 gem 'devise_invitable'
 gem 'will_paginate'
 gem 'best_in_place'
