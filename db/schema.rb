@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120929163235) do
+ActiveRecord::Schema.define(:version => 20120929182316) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
@@ -134,6 +134,16 @@ ActiveRecord::Schema.define(:version => 20120929163235) do
 
   add_index "profiles", ["user_id"], :name => "index_profiles_on_user_id"
 
+  create_table "recpients", :force => true do |t|
+    t.integer  "message_id"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "recpients", ["message_id"], :name => "index_recpients_on_message_id"
+  add_index "recpients", ["user_id"], :name => "index_recpients_on_user_id"
+
   create_table "relationships", :force => true do |t|
     t.integer  "user_id"
     t.integer  "circle_id"
@@ -148,6 +158,7 @@ ActiveRecord::Schema.define(:version => 20120929163235) do
     t.string   "content"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "slug"
   end
 
   add_index "tags", ["content"], :name => "index_tags_on_content", :unique => true
@@ -167,6 +178,9 @@ ActiveRecord::Schema.define(:version => 20120929163235) do
     t.datetime "updated_at",                             :null => false
     t.string   "username"
     t.string   "slug"
+    t.boolean  "privacy"
+    t.boolean  "opt_in"
+    t.boolean  "notify_by_email"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

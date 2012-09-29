@@ -36,14 +36,20 @@ class User < ActiveRecord::Base
    has_many :circles, :foreign_key => :author_id
    has_many :messages, :foreign_key => :sender_id
    has_many :posts, dependent: :destroy
-   has_one :profile
+   has_one :profile, dependent: :destroy
  
+ 
+  
+  accepts_nested_attributes_for :profile
+  
   def initialize_profile
       (self.profile = Profile.new).save
   end
 
 
-  
+    def audience
+     audience = self.followers
+  end
 
   def self.new_with_session(params, session)
     super.tap do |user|

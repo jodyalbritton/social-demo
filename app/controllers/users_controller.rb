@@ -15,7 +15,7 @@ class UsersController < ApplicationController
     @message = current_user.messages.build(params[:message])
      mycircles =  current_user.relationships.collect{|g| g.circle_id}
      mycircles.push(0)
-     @activities = @user.activities.where(:target_type => ["Post", "Stat", "Pactivity", "Meal"], :scope => mycircles )
+     @activities = @user.activities.where(:target_type => ["Post"], :scope => mycircles )
     
     @post = Post.new
     @followers = @user.followers
@@ -37,6 +37,11 @@ class UsersController < ApplicationController
         render "edit"
     end
  end
-
+ def invite
+    authorize! :invite, @user, :message => 'Not authorized as an administrator.'
+    @user = User.find(params[:id])
+    @user.send_confirmation_instructions
+    redirect_to :back, :notice => "Sent invitation to #{@user.email}."
+ end
 
 end

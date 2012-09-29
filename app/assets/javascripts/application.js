@@ -13,11 +13,14 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.ui.core
-//= require jquery.remotipart
+//= require jquery.Jcrop
 //= require twitter/bootstrap
 //= require autocomplete-rails
 //= require rails.validations
+//= require jquery.tokeninput
+//= require jquery.remotipart
 //= require_tree .
+// Search form.  
 
 $(document).ready(function(){
     $('textarea').autosize();  

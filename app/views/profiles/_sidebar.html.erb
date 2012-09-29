@@ -1,0 +1,21 @@
+<ul class="nav nav-tabs nav-stacked">
+
+     <li class="<%='active' if params[:controller] == 'registrations'%>">
+      <%= link_to (edit_user_registration_path(current_user)) do %>
+      Account
+      <i class="icon-chevron-right pull-right"></i>
+      <% end %>
+    </li>
+   <li class="<%='active' if params[:controller] == 'profiles'%>">
+      <%= link_to(edit_user_profile_path(current_user)) do %>
+      Profile
+      <i class="icon-chevron-right pull-right"></i>
+      <% end %>
+    </li>
+  <li class="<%='active' if params[:controller] == 'circles'%>">
+    <%= link_to(circles_path) do%>
+       Circles
+      <i class="icon-chevron-right pull-right"></i>
+      <% end %>
+  </li>
+</ul>

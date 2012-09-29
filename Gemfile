@@ -15,9 +15,9 @@ gem 'pg'
   gem 'coffee-rails', '~> 3.2.1'
  
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  gem 'therubyracer', :platforms => :ruby
-
-  gem 'uglifier', '>= 1.0.3'
+gem 'therubyracer', :platforms => :ruby
+gem 'uglifier', '>= 1.0.3'
+gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'twitter-bootstrap-rails'
 gem "launchy"
@@ -29,7 +29,6 @@ gem "carrierwave"
 gem "rmagick", :require => 'RMagick'
 gem "friendly_id", "~> 4.0.1"
 gem 'simple_form'
-gem 'jquery-rails'
 gem 'rails3-jquery-autocomplete', :git => 'https://github.com/crowdint/rails3-jquery-autocomplete.git'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'

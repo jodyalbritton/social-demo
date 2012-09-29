@@ -1,22 +1,62 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
-
+<% content_for :sidebar do %>
+<%= render "profiles/sidebar" %>
+<% end %>
+<% resource.build_profile unless resource.profile%>
 <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
   <%= f.error_notification %>
-
-  <div class="form-inputs">
+<ul class="nav nav-tabs" id="myTab">
+  <li class="active"><a href="#account"data-toggle="tab">Account</a></li>
+  
+  
+  <li><a href="#wordpass" data-toggle="tab">Password</a></li>
+  <li><a href="#settings" data-toggle="tab">Settings</a></li>
+  <li><a href="#cancel_account" data-toggle="tab">Cancel Account</a></li>
+</ul>
+ 
+<div class="tab-content">
+  <div class="tab-pane active" id="account">
+  <div class="regis-inputs">
+    <%= f.input :username, :required => true %>
     <%= f.input :email, :required => true, :autofocus => true %>
-    <%= f.input :password, :autocomplete => "off", :hint => "leave it blank if you don't want to change it", :required => false %>
-    <%= f.input :password_confirmation, :required => false %>
-    <%= f.input :current_password, :hint => "we need your current password to confirm your changes" %>
   </div>
 
+  </div>
+
+   <div class="tab-pane regis" id="settings">
+   <div class="regis-inputs">
+   <%= f.input :privacy, :hint => "Account hidden in search?"%>
+   <%= f.input :notify_by_email, :label => "E-mail Notifications"%>
+   <%= f.input :opt_in, :label=> "Updates", :hint=> "Updates via email from WMX" %>
+   
+  </div>
+  </div>
+  <div class="tab-pane regis" id="wordpass">
+  <div class="regis-inputs">
+    <%= f.input :password, :autocomplete => "off", :hint => "leave it blank if you don't want to change it", :required => false %>
+    <%= f.input :password_confirmation, :required => false %>
+    <%= f.input :current_password, :hint => "we need your current password to confirm your changes", :required => true %>
+  </div>
+  </div>
+  <div class="tab-pane regis" id="cancel_account">
+  <div class="regis-inputs">
+  <h3>Cancel my account</h3>
+
+   <p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), :confirm => "Are you sure??", :method => :delete %>.</p>
+  </div>
+  </div>
+</div>
+  
+
   <div class="form-actions">
-    <%= f.button :submit, "Update" %>
+    <%= f.button :submit, "Update", :class => 'btn btn-primary'%> <%= link_to "Back", :back %>
   </div>
 <% end %>
 
-<h3>Cancel my account</h3>
+<script>                
 
-<p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete %>.</p>
+$(function () {
+   var activeTab = $('[href=' + location.hash + ']');
+   activeTab && activeTab.tab('show');
+});
+</script>
 
-<%= link_to "Back", :back %>

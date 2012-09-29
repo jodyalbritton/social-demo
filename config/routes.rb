@@ -11,6 +11,7 @@ SocialDemo::Application.routes.draw do
     resources :posts
     resources :messages
     resources :circles
+    resources :contacts
     resources :gcategories
     resources :groups do
     resources :memberships 
