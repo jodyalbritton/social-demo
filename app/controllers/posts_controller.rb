@@ -41,7 +41,7 @@ class PostsController < ApplicationController
           flash.discard
           else 
            @group = Group.find(@post.parent_id)
-           @activities = Kaminari.paginate_array( @group.activities.find(:all)).page(params[:page]).per(5)
+           @activities = @group.activities.find(:all)
           end
         
    

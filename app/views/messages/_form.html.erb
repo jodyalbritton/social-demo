@@ -1,0 +1,27 @@
+<%= simple_form_for @message, :remote => true do |f| %>
+<div class="modal-header">
+ <button class="close" data-dismiss="modal">×</button>
+  <h2>Message User</h2>
+  <%= f.error_notification %>
+</div>
+  <div class="modal-body">
+  	<% if @user  %>
+  	<% unless @user == current_user %>
+    <%= f.input :user_tokens, :label => "To:", :as => 'string', :input_html => { data: {load: [{:id => @user.id, :name => @user.username } ]}}, :class=> "x-large"%>
+  	<% else %>
+  	<%= f.input :user_tokens, :label => "To:", :as => 'string', :input_html => {  data: {load: @message.users.collect {|user| {:id => user.id, :name => user.username } }}}, :class=> "x-large"%>
+
+  	<% end %>
+  	<% else %>
+    <%= f.input :user_tokens, :label => "To:", :as => 'string', :input_html => {  data: {load: @message.users.collect {|user| {:id => user.id, :name => user.username } }}}, :class=> "x-large"%>
+    <% end %>
+    <%= f.input :subject %>
+    <%= f.input :body, :input_html => {:class=>"message-body input span10"}%>
+  
+  </div>
+
+  <div class="modal-footer">
+    <%= f.button :submit %>
+    <a href="#" data-dismiss="modal" class="btn">Cancel</a>
+  </div>
+<% end %>

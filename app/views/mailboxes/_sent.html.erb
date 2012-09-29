@@ -1,0 +1,39 @@
+<table class="table table-striped">
+	<tr>
+			<td>Recipients</td>
+			<td>Subject</td>
+			<td>Date</td>
+			<td>Actions</td>
+		
+    </tr>
+    <% if @sent_messages.count > 0 %>
+	<% @sent_messages.each do |message| %>
+		<tr>
+			
+			<td>
+				<% message.recipients.each do |recip| %>
+				<%= recip.user.username %>
+				<% end %>
+				
+			</td>
+			<td><%= message.subject%></td>
+			<td><%= message.created_at%></td>
+			<td>
+		    <div style="font-size: 20px;">
+  				<i rel="tooltip" title="Delete Message" class="icon-trash"></i>
+  			
+			</div
+			</td>
+		
+		</tr>
+	<% end %>
+	<% else %>
+	<tr>
+		<td></td>
+		<td>No Messages</td>
+		<td></td>
+		<td></td>
+	</tr>
+	
+	<% end %>
+</table>

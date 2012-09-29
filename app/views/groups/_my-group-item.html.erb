@@ -1,0 +1,8 @@
+
+
+  	<% current_user.memberships.each do |membership| %>
+  	  <div class="group-list-item">
+  	  
+  	   <%= image_tag membership.group.avatar.url(:mini), :class => "avatar"  %><%= link_to membership.group.name, membership.group, :class => "group-link"%>
+  	  </div>
+    <% end %>

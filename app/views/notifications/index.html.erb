@@ -1,0 +1,19 @@
+  <ul>
+<% @notifications.each do |notification|%>
+
+  <li>
+    <div>
+    	<%= notification.activity.user.username %> 
+    </div>
+    <div>
+    	<% if notification.activity.target_type == "Comment" %>
+    	<%= link_to notification.activity.verb, notification.activity.target.commentable %> on a <%= notification.activity.target.commentable_type %>
+    	<% else %>
+    	<%= link_to notification.activity.verb, notification.activity.target %> a <%= notification.activity.target_type%>
+    	<% end %>
+    </div>
+  </li>
+  
+  
+<% end %>
+</ul>

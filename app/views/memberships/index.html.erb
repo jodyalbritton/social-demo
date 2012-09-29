@@ -1,0 +1,31 @@
+<h1>Listing memberships</h1>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>Pending</th>
+    <th>Group</th>
+    <th>Blocked</th>
+    <th>Glevel</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @memberships.each do |membership| %>
+  <tr>
+    <td><%= membership.user %></td>
+    <td><%= membership.pending %></td>
+    <td><%= membership.group.name %></td>
+    <td><%= membership.blocked %></td>
+    <td><%= membership.glevel %></td>
+    <td><%= link_to 'Show', group_membership_path(@group, membership) %></td>
+    <td><%= link_to 'Edit', edit_group_membership_path(@group, membership) %></td>
+    <td><%= link_to 'Destroy', group_membership_path(@group, membership), confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Membership', new_group_membership_path(@group) %>

@@ -1,0 +1,55 @@
+<table class="table table-striped">
+	<tr>
+			<td>From</td>
+			<td>Message</td>
+			<td>Actions</td>
+		
+    </tr>
+    <% if @notifications.count > 0 %>
+	<% @notifications.each do |notification| %>
+		<tr>
+			
+			<td><%= notification.activity.user.username %> </td>
+			<td>
+				
+    	        <%= notification.activity.verb %> a <%= link_to notification.activity.target_type, notification.activity.target%>
+    	     
+			</td>
+			<td>
+		    <div style="font-size: 20px;">
+  				<i class="icon-trash" rel="tooltip" title="Delete Message"></i>
+			</div
+			</td>
+		
+		</tr>
+	<% end %>
+	<% else %>
+	<tr>
+		<td></td>
+		<td>No Notifications</td>
+		<td></td>
+		<td></td>
+	</tr>
+	
+	<% end %>
+</table>
+
+
+
+<% @notifications.each do |notification|%>
+<div class="row-fluid notification">
+
+
+ 
+    <div>
+    	
+    </div>
+    <div>
+    	
+    </div>
+
+  
+  
+	
+</div>
+<% end %>

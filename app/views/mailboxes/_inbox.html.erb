@@ -1,0 +1,56 @@
+<table class="table table-striped">
+	<tr>
+			<td>Subject</td>
+			<td>From</td>
+			<td>Date</td>
+			<td>Actions</td>
+		
+    </tr>
+    <% if @messages.count > 0 %>
+	<% @messages.each do |message| %>
+
+		<tr onclick = "javascript:toggleDiv('message_body_<%= message.message.id%>');">
+	    <div >
+			<td><%= message.user.username %></td>
+			<td><%= message.message.subject%></td>
+			<td><%= message.message.created_at%></td>
+			<td>
+		    <div style="font-size: 20px;">
+  				<i class="icon-trash" rel="tooltip" title="Delete Message"></i>
+  				<i class="icon-eye-open" rel="tooltip" title="Mark as read"></i>
+  				<i class="icon-star" rel="tooltip" title="Favorite"></i>
+			</div>
+			</td>
+		</div>
+		</tr>
+		
+		<tr id="message_body_<%=message.message.id%>" style="display:none;">
+	    
+	
+	    <td colspan="4">
+	    <div>
+	    Message:
+	    </div>
+	    <div>
+	    <%= message.message.body%>
+	
+	
+		</div>
+        </td>
+		</tr>
+
+
+	
+
+
+	<% end %>
+	<% else %>
+	<tr>
+		<td></td>
+		<td>No Messages</td>
+		<td></td>
+		<td></td>
+	</tr>
+	
+	<% end %>
+</table>

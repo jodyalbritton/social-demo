@@ -1,0 +1,30 @@
+
+  
+<% content_for :sidebar do%>
+<div style="padding-bottom:10px;">
+	<a data-toggle="modal" class="btn btn-primary btn-large" href="#dm-modal"><i class="icon-envelope"></i> Compose</a>
+</div>
+
+<ul class="nav nav-tabs nav-stacked">
+  <li class="active"><a href="#inbox" data-toggle="tab">Inbox <span class="badge pull-right"><%= @messages.count %></span></a></li>
+  <li><a href="#sent" data-toggle="tab">Sent <span class="badge pull-right"><%= @sent_messages.count %> </span></a> </li>
+  <li><a href="#notifications" data-toggle="tab">Notifications <span class="badge pull-right"><%= @notifications.count %></span></a></li>
+  </ul>
+<% end %>
+  <div class="tab-content">
+ 
+  <div class="tab-pane inbox active" id="inbox">
+  	
+  		<%= render :partial => "mailboxes/inbox" %>
+ 
+  </div>
+   <div class="tab-pane inbox" id="sent">
+        <%= render :partial => "mailboxes/sent" %>
+  </div>
+  <div class="tab-pane inbox" id="notifications">
+        <%= render :partial => "mailboxes/notifications" %>
+  </div>
+  </div>
+  <div class="modal hide fade" id="dm-modal">
+       <%= render "messages/form"%>
+  </div>

@@ -1,0 +1,121 @@
+<% content_for :sidebar do %>
+<div id="circle_sidebar">
+<%= render "circles/sidebar" %>
+</div>
+<% end %>
+
+
+<div class="stats-top row-fluid">
+	<div class="span10">
+	</div>
+	<div class="span2">
+	<a class="btn btn-primary" data-toggle="modal" href="#circle-modal">New Circle <i class="icon-upload"></i></a>
+	</div>
+	
+</div>
+
+<div class="tab-content">
+ 
+  <div class="tab-pane active inbox" id="following-tab">
+    <div class="circle-header">
+	  <h2>People I follow</h2>
+     </div>
+     <% current_user.follows.each do |follow| %>
+     <div class="user-card row-fluid">
+     <div class="user-card-avatar span2">
+	    <%= image_tag follow.followable.profile.avatar.url(:thumb) %>
+	</div>
+	<div class="user-card-main span7">
+		<%= follow.followable.username %>
+    </div>
+    <div class="user-card-control span3">
+    	<%= render :partial => "follows/follow_user", :locals => {:user => follow.followable } %>
+    </div>
+    </div>
+    <% end %>
+	
+  </div>
+  <div class="tab-pane inbox" id="followers-tab">
+    <div class="circle-header">
+	  <h2>Followers</h2> 
+     </div>
+     <% current_user.followings.each do |follow| %>
+     <div class="user-card row-fluid">
+     <div class="user-card-avatar span2">
+	    <%= image_tag follow.follower.profile.avatar.url(:thumb) %>
+	</div>
+	<div class="user-card-main span7">
+		<%= follow.follower.username %>
+    </div>
+    <div class="user-card-control span3">
+    	<%= render :partial => "follows/follow_user", :locals => {:user => follow.follower } %>
+    </div>
+    </div>
+    <% end %>
+	
+  </div>
+  
+  <% @circles.each do |circtab| %>
+   <div class="tab-pane inbox" id="circle-tab-<%= circtab.id %>">
+    <div class="circle-header">
+      <h2>
+	  <%= circtab.name %> <%= link_to edit_circle_path(circtab) do %>
+	  <i class="icon-cogs"></i>
+	  <% end %>
+	  <%= link_to circtab, confirm: 'Are you sure?', method: :delete  do %>
+	  <i class="icon-trash"></i>
+	  <% end %>
+	  </h2>
+     </div>
+     <% circtab.users.each do |user| %>
+     <div class="user-card row-fluid">
+     <div class="user-card-avatar span2">
+	    <%= image_tag user.profile.avatar.url(:thumb) %>
+	</div>
+	<div class="user-card-main span7">
+		<%= user.username %>
+    </div>
+    <div class="user-card-control span3">
+    	<%= render :partial => "follows/follow_user", :locals => {:user => user } %>
+    </div>
+    </div>
+    
+   
+    
+    <% end %>
+	
+  </div>
+  <% end %>
+</div>
+        
+ 
+ <div class="modal hide" id="circle-modal">
+    	<%= simple_form_for @circle, :remote => true do |f| %>
+        <div class="modal-header">
+        <h2>Create Circle</h2>
+        <%= f.error_notification %>
+        </div>
+        <div class="modal-body">
+  
+        <div class="form-inputs">
+        <%= f.input :name %>
+        <%= f.input :user_tokens, :label => "Circle Members", :as => 'string', :input_html => {  data: {load: @circle.users.collect {|user| {:id => user.id, :name => user.username } }}}, :class=> "x-large"%>
+
+    <%= f.input :description %>
+  </div>
+</div>
+<div class="modal-footer">
+ 
+    <%= f.button :submit %>
+
+</div>
+<% end %>
+    </div>
+
+
+
+
+
+
+
+

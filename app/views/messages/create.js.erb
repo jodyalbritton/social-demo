@@ -1,0 +1,23 @@
+
+/*Hide the flash notice div*/
+  $("#flash_notice").hide(300);
+
+  /*Update the html of the div stat_errors with the new one*/
+  $("#flash_errors").html("");
+
+  /*Show the div stat_errors*/
+  $("#flash_errors").show(300);
+
+  /*Hide the div stat_errors*/
+  $("#flash_errors").hide(300);
+
+  /*Update the html of the div flash_notice with the new one*/
+  $("#flash_notice").append("<%= escape_javascript(flash[:notice])%>");
+
+  /*Show the flash_notice div*/
+  $("#flash_notice").show(300);
+
+
+/*Clear the entire form*/
+$(":input:not(input[type=submit])").val("");
+$('#dm-modal').modal('hide');

@@ -1,0 +1,16 @@
+<%= simple_form_for @group do |f| %>
+    
+    <%= f.input :name %>
+    <%= image_tag @group.avatar.url(:medium) %></br>
+    
+    <%= f.file_field :avatar %>
+    <%= f.input :privacy_level, :input_html => {:class => "input-medium"}, :as => "select", :collection =>  ([['Public', 'PUBLIC'], ['Private', 'PRIVATE'], ['Invite Only', 'INVITE']]), :default => "PUBLIC" %>
+
+  
+    <%= f.input :active %>
+    <%= f.input :description %>
+     
+
+    <%= f.button :submit %>
+
+<% end %>

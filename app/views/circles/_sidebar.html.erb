@@ -1,0 +1,7 @@
+<ul class="nav nav-tabs nav-stacked">
+  <li class="active"><a href="#following-tab" data-toggle="tab">Following</a></li>
+  <li><a href="#followers-tab" data-toggle="tab">Followers</a></li>
+  <% @circles.each do |circle| %>
+    <li><a href="#circle-tab-<%= circle.id %>" data-toggle="tab"><%= circle.name %></a></li>
+  <% end %>
+</ul>

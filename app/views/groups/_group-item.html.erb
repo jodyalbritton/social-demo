@@ -1,0 +1,23 @@
+
+ <div>
+  	<% @groups.each do |group| %>
+  	        
+  	         <div class="row-fluid group-pane">
+  	      
+  	         <div class="span2 group-item-sidebar" >
+  	         <%= image_tag group.avatar.url(:thumb), :class => "avatar" %>
+  	         </div>
+  	         <div class="span10 group-item-body">
+  	         <div><h2><%= link_to group.name, group %></h2></div>
+  	         <% if current_user == group.user %>
+  	         <div><%= link_to 'Edit', edit_group_path(group) %> | <%= link_to 'Destroy', (group), confirm: 'Are you sure?', method: :delete %></div>
+             <% end %>
+             <div> Description: <%= group.description %></div>
+             <div> Members: <%= group.memberships.count %></div>
+  	         </div>
+  	         </div>
+  	     
+  	       
+    
+    <% end %>
+        </div>

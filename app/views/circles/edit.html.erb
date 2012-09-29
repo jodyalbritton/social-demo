@@ -1,0 +1,10 @@
+<% content_for :sidebar do %>
+<ul class="nav nav-tabs nav-stacked">
+  <li class="active"><a href="#" >Editing <%= @circle.name %></a></li>
+  <li><a href="/circles" > Back</a></li>
+
+</ul>
+<% end %>
+
+
+<%= render "circles/form"%>

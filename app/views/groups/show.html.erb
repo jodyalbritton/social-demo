@@ -1,0 +1,133 @@
+<% @parent = @group.id %>
+<% content_for :sidebar do %>
+<div id="groups-sidebar" class="menu">
+
+<div id="group-about">
+	
+	<h3>About</h3>
+	<%= @group.description %>
+    <% if current_user == @group.user %>
+	<%= link_to 'Edit', edit_group_path(@group) %> 
+	<% end %>
+
+</div>
+
+<div id="group-owner">	
+	<h3>Owner</h3>
+  <%= @group.user.username %>
+</p>
+
+</div>
+
+<div id="group-privacy">
+	<h3>Group Privacy</h3>
+  <%= @group.privacy_level %>
+</p>
+
+</div>
+
+<div id="group-active">
+  	<h3>Group Status</h3>
+  <% if @group.active == true %>
+  Active
+  <% else %>
+  Not Active
+  <% end %>
+</p>
+</div>
+
+<div id="group-members">
+		<h3>Group Members</h3>
+     
+     <% @members.each do |x| %> 
+     <%=link_to x.user, :rel => "popover", :data=>{:trigger=> "hover", :html=> true,:content=> (render "groups/popover"), :title=> x.user.username } do %>
+  
+     <%= image_tag x.user.profile.avatar.url(:mini) %>
+     <% end %>
+ 
+    
+     <% end %>
+</div>
+
+            
+  </div>    
+<% end %>
+
+  <div id="profile-name">
+  	  <div class="row-fluid">
+  	      <div class="span1">
+  	       <%= image_tag @group.avatar.url(:thumb), :class => "group-pic"%>
+  	      </div>
+  	      <div class="span9">
+          <h3><%= @group.name %></h3>
+	      <% if @current_memberships == 0 %>
+          <% if user_signed_in? %>
+          <div id="join_group">
+           <%= simple_form_for ([@group, @new_membership]) do |f| %>
+           <%= f.button :submit,  'Join Group', :class => 'btn btn-primary' %>
+           <%= f.input :user_id, :as=> 'hidden', :input_html => {:value => current_user}%>
+           <% end %>
+                
+          </div>
+          <% end %> 
+          <% else %>
+          <div id="leave_group">
+           <% @membership.each do |membership| %>
+           <%= link_to "Leave Group",  ([@group, membership]), confirm: 'Are you sure?', :class=>"btn btn-danger", method: :delete %>
+           <% end %>
+          </div>
+        <% end %>
+        </div>
+        <div id="profile-merit" class="span2">
+         <strong> <%= @group.memberships.count %> </strong> Members
+        </div>
+
+      </div>
+      
+  </div>
+
+
+
+
+<% if @current_memberships %>
+<div id="posts_form">
+	<%= render :partial => 'posts/form' %>
+</div>
+
+<% end %>
+
+
+<div class="row-fluid" id="groups-body">
+ 
+
+
+
+
+     <% if @group.privacy_level == "PUBLIC" %>
+      <div id="activity_feed"><%= render "activities/index" %></div>
+      <% elsif @group.privacy_level == "RESTRICTED"%>
+      <% unless @current_memberships == 0 %>
+      <div id="activity_feed"><%= render "activities/index" %></div>
+      <%= paginate @activities%>
+      <% end %>
+      <% end %>
+
+  
+
+
+
+
+
+
+  </div>
+ 
+
+     
+
+
+
+
+
+
+
+

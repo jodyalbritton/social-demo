@@ -1,0 +1,10 @@
+<ul class="nav nav-tabs nav-stacked">
+
+  <li class="<%= 'active' if params[:controller] == 'users' %>">
+    <%= link_to "Users", users_path %>
+  </li>
+ 
+  <li class="<%= 'active' if params[:controller] == 'groups' %>">
+    <%= link_to "Groups", groups_path %>
+  </li>
+</ul>

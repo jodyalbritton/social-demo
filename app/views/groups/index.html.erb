@@ -1,0 +1,38 @@
+<% content_for :sidebar do %>
+	<%= render "groups/navigation" %>
+<% end %>
+   
+      
+    
+    
+       
+       <div class="group-controls">
+       <ul class="nav nav-tabs flush" id="myTab">
+       <li class="active"><a href="#my-groups" data-toggle="tab">My Groups</a></li>
+       <li><a href="#all-groups" data-toggle="tab">All Groups</a></li>
+       </ul>
+
+       </div>
+
+        <div class="tab-content flush">
+   
+        <div class="tab-pane active" id="my-groups">
+        <div class="row-fluid">
+            <%=render "my-groups-item"%>
+        </div>
+        </div>
+        <div class="tab-pane" id="all-groups">
+        	<%= render "group-item" %>
+        </div>
+        </div>
+        </div>
+
+  
+
+        
+      
+    
+
+
+
+
