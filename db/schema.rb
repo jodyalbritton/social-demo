@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120929182316) do
+ActiveRecord::Schema.define(:version => 20120929232757) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
@@ -162,6 +162,7 @@ ActiveRecord::Schema.define(:version => 20120929182316) do
   end
 
   add_index "tags", ["content"], :name => "index_tags_on_content", :unique => true
+  add_index "tags", ["slug"], :name => "index_tags_on_slug"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
