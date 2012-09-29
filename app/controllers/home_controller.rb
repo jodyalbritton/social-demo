@@ -3,7 +3,8 @@ class HomeController < ApplicationController
 
    
     def index
-     
+     @tags = Tag.all
+     @tags.sort! {|x,y| y.trend_count <=> x.trend_count }
      @user = User.find(current_user)
      @scopes = current_user.circles.map { |r| [r.name, r.id] }
      @scopes.push(["Public", "0"])

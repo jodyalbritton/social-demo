@@ -3,7 +3,10 @@ class Tag < ActiveRecord::Base
   
   has_and_belongs_to_many :activities
   
-
+  def trend_count
+     self.activities.count  
+  end
+  
   def self.process_tags(activity_id)
     p = Activity.find(activity_id)
     p.tag_list.each do |tag|
