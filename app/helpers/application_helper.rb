@@ -16,14 +16,14 @@ module ApplicationHelper
     if $1 == "@"
       linker = User.where(:username => $2)
         if linker.any?
-        link_to "@"+$2, user_path(linker.last.id) 
+        link_to "@"+$2.downcase, user_path(linker.last)
         else 
         $2
         end  
    elsif $1 == "#"
      linker = Tag.where(:content => $2.downcase)
        if linker.any?
-       link_to "#"+$2.downcase, tag_path(linker.last.id) 
+       link_to "#"+$2.downcase, tag_path(linker.last) 
        else 
        $2.downcase
        end
