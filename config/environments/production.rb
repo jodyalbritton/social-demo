@@ -61,6 +61,7 @@ SocialDemo::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
   
+  ENV["REDISTOGO_URL"] ||= "redis://redistogo:e1a52dde9183ebc55b14c7c19b422413@fish.redistogo.com:9450"
 
   # Log the query plan for queries taking more than this (works
   # with SQLite, MySQL, and PostgreSQL)

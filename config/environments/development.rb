@@ -34,5 +34,7 @@ SocialDemo::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+  
+  ENV["REDISTOGO_URL"] ||= "localhost:9450"
 
 end
