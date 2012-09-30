@@ -1,12 +1,6 @@
 class PostsController < ApplicationController
 
-  before_filter :load
 
-  def load
-    
-   
-    @post = Post.new
-  end
 
   def index
      @user = User.find(current_user)
@@ -20,6 +14,7 @@ class PostsController < ApplicationController
 
   def create
   
+     
  
     @post = current_user.posts.build(params[:post])
   
@@ -35,7 +30,7 @@ class PostsController < ApplicationController
           following_ids = following.collect{|f| f.followable_id}
           mycircles =  current_user.relationships.collect{|g| g.circle_id}
           mycircles.push(0)
-          aoi = Activity.where(:target_type => ["Post"], :scope => mycircles )
+          aoi = Activity.where(:target_type => ["Post", "Stat", "Pactivity", "Meal"], :scope => mycircles )
           @activities = aoi.where(:user_id => [following_ids, current_user] ).page params[:page]
           flash[:notice] = "Successfully created post"
           flash.discard
@@ -58,6 +53,7 @@ class PostsController < ApplicationController
     
     
     
+
   end
 
   def edit
