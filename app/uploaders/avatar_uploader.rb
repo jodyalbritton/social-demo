@@ -11,7 +11,7 @@ class AvatarUploader < CarrierWave::Uploader::Base
   # include Sprockets::Helpers::IsolatedHelper
 
   # Choose what kind of storage to use for this uploader:
-  storage :fog
+
   def cache_dir
     "#{Rails.root}/tmp/uploads"
   end
