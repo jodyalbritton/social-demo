@@ -42,6 +42,7 @@ gem 'best_in_place'
 gem 'remotipart'
 gem 'girl_friday'
 gem 'heroku'
+gem 'fog'
 
 group :development do
 gem 'bullet'
