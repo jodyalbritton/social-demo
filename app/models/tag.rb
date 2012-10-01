@@ -7,7 +7,8 @@ class Tag < ActiveRecord::Base
   has_and_belongs_to_many :activities
   
   def trend_count
-     self.activities.count  
+     trend = self.activities.where( ["created_at >= ?", 2.days.ago])
+     trend.count
   end
   
   def self.process_tags(activity_id)
