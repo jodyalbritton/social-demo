@@ -1,39 +1,35 @@
 <% content_for :sidebar do %>
-<div id="circle_sidebar">
-<%= render "circles/sidebar" %>
-</div>
+	<div id="circle_sidebar">
+		<%= render "circles/sidebar" %>
+	</div>
 <% end %>
-
-
-<div class="stats-top row-fluid">
-	<div class="span10">
+	<div class="stats-top row-fluid">
+		<div class="span10">
+		</div>
+		<div class="span2">
+			<p>
+				<a class="btn btn-primary" data-toggle="modal" href="#circle-modal">New Circle <i class="icon-upload"></i></a>
+			</p>
+		</div>
 	</div>
-	<div class="span2">
-	<a class="btn btn-primary" data-toggle="modal" href="#circle-modal">New Circle <i class="icon-upload"></i></a>
-	</div>
-	
-</div>
-
-<div class="tab-content">
- 
+<div class="tab-content"> 
   <div class="tab-pane active inbox" id="following-tab">
     <div class="circle-header">
 	  <h2>People I follow</h2>
      </div>
      <% current_user.follows.each do |follow| %>
      <div class="user-card row-fluid">
-     <div class="user-card-avatar span2">
-	    <%= image_tag follow.followable.profile.avatar.url(:thumb) %>
-	</div>
-	<div class="user-card-main span7">
+     	<div class="user-card-avatar span2">
+	    	<%= image_tag follow.followable.profile.avatar.url(:thumb) %>
+		</div>
+	 <div class="user-card-main span7">
 		<%= follow.followable.username %>
-    </div>
-    <div class="user-card-control span3">
+     </div>
+     <div class="user-card-control span3">
     	<%= render :partial => "follows/follow_user", :locals => {:user => follow.followable } %>
-    </div>
-    </div>
+     </div>
+     </div>
     <% end %>
-	
   </div>
   <div class="tab-pane inbox" id="followers-tab">
     <div class="circle-header">
@@ -87,8 +83,6 @@
   </div>
   <% end %>
 </div>
-        
- 
  <div class="modal hide" id="circle-modal">
     	<%= simple_form_for @circle, :remote => true do |f| %>
         <div class="modal-header">
@@ -96,21 +90,17 @@
         <%= f.error_notification %>
         </div>
         <div class="modal-body">
-  
         <div class="form-inputs">
         <%= f.input :name %>
         <%= f.input :user_tokens, :label => "Circle Members", :as => 'string', :input_html => {  data: {load: @circle.users.collect {|user| {:id => user.id, :name => user.username } }}}, :class=> "x-large"%>
-
-    <%= f.input :description %>
-  </div>
-</div>
-<div class="modal-footer">
- 
+        <%= f.input :description %>
+        </div>
+        </div>
+    <div class="modal-footer">
     <%= f.button :submit %>
-
-</div>
-<% end %>
     </div>
+     <% end %>
+ </div>
 
 
 

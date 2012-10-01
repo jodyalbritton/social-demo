@@ -1,17 +1,20 @@
 class Circle < ActiveRecord::Base
-  
+  #fields accessible
   attr_accessible :description, :name, :user_tokens
   
+  #set attribute reader 
+  attr_reader :user_tokens
   
+  #relationships
   belongs_to :author, :class_name => 'User'
-  
   has_many :relationships
   has_many :users, :through => :relationships
   
-  attr_reader :user_tokens
   
+  #validations
   validates_length_of :name, :maximum => 15
   
+  #actions
   after_create :create_new_relationship
   
   def name_format

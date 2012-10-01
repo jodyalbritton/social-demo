@@ -19,6 +19,7 @@
 //= require rails.validations
 //= require jquery.tokeninput
 //= require jquery.remotipart
+//= require turbolinks
 //= require_tree .
 // Search form.  
 

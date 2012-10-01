@@ -1,11 +1,11 @@
 <% if @activities.count == 0 %>
-<div class="row-fluid activity-item">
-<div class="alert alert-error">
-	No recent activity. 
-</div>
-</div>
+	<div class="row-fluid activity-item">
+	<div class="alert alert-error">
+		No recent activity. 
+	</div>
+	</div>
 <% else %>
-<%= render :partial => @activities , :as => :activity  %>
+	<%= render :partial => @activities , :as => :activity  %>
 <% end %>
 
  

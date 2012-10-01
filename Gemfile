@@ -43,6 +43,7 @@ gem 'remotipart'
 gem 'girl_friday'
 gem 'heroku'
 gem 'fog'
+gem 'turbolinks'
 
 group :development do
 gem 'bullet'

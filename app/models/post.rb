@@ -7,7 +7,7 @@ class Post < ActiveRecord::Base
    include Likeable
    mount_uploader :attachment, AttachmentUploader
    
-   #associations 
+   #relationships 
    
    belongs_to :in_reply_to, :class_name => "Activity", :foreign_key => "reply_to_id"
    belongs_to :user
@@ -19,22 +19,6 @@ class Post < ActiveRecord::Base
    
    validates_presence_of :content
    
-   
     
-   
-  
-   
-   
-  
-
-      
- 
-
-    
-       
- 
-   
-    
-            
 
 end

@@ -1,1 +1,1 @@
-  <%= button_to("Follow #{user.username}", user_follows_path(user.to_param), :remote => true) %>
+  <%= button_to("Follow #{user.username}", user_follows_path(user.to_param),  :"data-no-turbolink"=>true, :remote => true) %>

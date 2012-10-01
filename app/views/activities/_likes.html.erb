@@ -1,15 +1,12 @@
-             <% activity = Activity.find(like_object)%>
-             <div id="activity_like_<%= activity.id %>" class="activity-like-menu">
-         
-             <a href="javascript:toggleDiv('expanded_<%=activity.id %>');" class= "icon-resize-full"> Expand </a>
-                
-             <%- if current_user.likes? activity.target -%>
-             <%= unlike_link_for activity.target  %>
+<% activity = Activity.find(like_object)%>
+	<div id="activity_like_<%= activity.id %>" class="activity-like-menu">
+    	<a href="javascript:toggleDiv('expanded_<%=activity.id %>');" class= "icon-resize-full"> Expand </a>
+     		 <%- if current_user.likes? activity.target -%>
+             	<%= unlike_link_for activity.target  %>
              <%- else -%>
-             <%= like_link_for activity.target  %>
+             	<%= like_link_for activity.target  %>
              <%- end -%>
-             <%= link_to  new_post_path(:reply_to_id => activity.id), :remote => true do %>
-             <i class="icon-comment"></i> Reply
-             <% end %>               
-             
-             </div>
+             	<%= link_to  new_post_path(:reply_to_id => activity.id), :remote => true do %>
+             	<i class="icon-comment"></i> Reply
+             <% end %>                         
+   </div>

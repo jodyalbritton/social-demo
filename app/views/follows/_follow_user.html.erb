@@ -1,7 +1,7 @@
 <% unless user == current_user %>
   <% if current_user.following?(user) %>
     <div class="btn-group">
-    <%= link_to("Following", user_follow_path(user.to_param, current_user.get_follow(user).id), :method => :delete, :remote => true, :class => "btn btn-mini btn-primary") %>
+    <%= link_to("Following", user_follow_path(user.to_param, current_user.get_follow(user).id),  :"data-no-turbolink"=>true, :method => :delete, :remote => true, :class => "btn btn-mini btn-primary") %>
     <a data-toggle="modal" class="btn btn-mini btn-primary" href="#dm-modal"><i class="icon-envelope"></i></a>
                  <a class="btn btn-mini btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="icon-caret-down"></span></a>
                   <ul class="dropdown-menu">
@@ -14,7 +14,7 @@
                 </div>
     <% else %>
     <div class="btn-group">
-    <%= link_to("Follow", user_follows_path(user.to_param), :method => :post,:remote => true, :class => "btn btn-mini btn-primary") %>
+    <%= link_to("Follow", user_follows_path(user.to_param),  :"data-no-turbolink"=>true, :method => :post,:remote => true, :class => "btn btn-mini btn-primary") %>
      <a data-toggle="modal" class="btn btn-mini btn-primary" href="#dm-modal"><i class="icon-envelope"></i></a>
                  <a class="btn btn-mini btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="icon-caret-down"></span></a>
                   <ul class="dropdown-menu">

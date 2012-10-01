@@ -1,1 +1,1 @@
-    <%= button_to("Un-Follow #{user.username}", user_follow_path(user.to_param, current_user.get_follow(user).id), :method => :delete, :remote => true) %>
+    <%= button_to("Un-Follow #{user.username}", user_follow_path(user.to_param, current_user.get_follow(user).id),  :"data-no-turbolink"=>true, :method => :delete, :remote => true) %>
