@@ -1,6 +1,6 @@
 class Tag < ActiveRecord::Base
   extend FriendlyId
-  friendly_id :content, use: :slugged
+  friendly_id :name, use: :slugged
 
   attr_accessible :content
   
