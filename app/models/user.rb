@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   
   include Likeable::UserMethods
   extend FriendlyId
-  friendly_id :name, use: :slugged
+  friendly_id :username, use: :slugged
   acts_as_follower
   acts_as_followable
   rolify
